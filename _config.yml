@@ -93,9 +93,10 @@ og_image                 : # Open Graph/Twitter default site image
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
-  type                   : "Davide Bombacigno"# Person or Organization (defaults to Person)
+  type                   : "Davide Bombacigno" # Person or Organization (defaults to Person)
   name                   : # If the user or organization name differs from the site's name
-  links: # An array of links to social media profiles
+  links:
+    - "https://www.linkedin.com/in/davide-bombacigno-8100bb136/"
 
 # Analytics
 analytics:
@@ -111,7 +112,7 @@ author:
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Interested in solutions, and people"
   location         : "Bari, Italy"
-  email            :
+  email            : bombacigno.davide@gmail.com
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
@@ -127,7 +128,7 @@ author:
       # url: "https://facebook.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url: "davbom97"
+      url: "https://github.com/davbom97"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
