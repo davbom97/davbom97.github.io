@@ -4,9 +4,10 @@ title:  "Single facility location problem"
 ---
 
 ## Problem description  
+Suppose we pose ourself the problem : given some known factors, where should we build our facility(a supermarket, a shop, a distribution center, etc.) so we maximize our profits.
 
-Suppose we pose ourselves the following problem: given some known factors, where should we build our facility (a supermarket, a shop, a distribution center, etc.) so we maximize our profits.  
-This is a common question that must be asked every time we plan to make an investment to expand a business in a new region. Besides, often the available data might be the bare minimum, so we must make assumptions and make the most out of the data.
+This is a common question that must be asked everytime we plan to make a investment to expand a business in a new region.
+Also often the available data might be the bare minimum, so we have to make assumptions and make the most out of the data.
 
 In this case, our problem is the following : we want to build a new supermarket in the province of Brescia, Italy.
 The only data given is :
@@ -29,9 +30,10 @@ First we import the relevant libraries and the cities data (from the year 2011)
 
 ```python
 import pandas as pd
-from geopy.geocoders import Nominatim
+from geopy.geocoders import Nominatim,Photon
 import numpy as np
 from scipy import optimize as opt
+from PIL import Image
 from IPython.display import display
 import time
 ```
@@ -39,89 +41,10 @@ import time
 
 ```python
 data = pd.read_excel("Brescia_province_data.xlsx",sep = ";")
-display(data.head(10))
+display(data.head())
 ```
 
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="0" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>City</th>
-      <th>Pop size</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Acquafredda</td>
-      <td>1615</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Adro</td>
-      <td>7180</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Agnosine</td>
-      <td>1839</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Alfianello</td>
-      <td>2476</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Anfo</td>
-      <td>487</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Angolo Terme</td>
-      <td>2563</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Artogne</td>
-      <td>3545</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>Azzano Mella</td>
-      <td>2900</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>Bagnolo Mella</td>
-      <td>12969</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>Bagolino</td>
-      <td>3968</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-Now we need to get the latitudes and longitudes of the cities to compute the distances,we do so using a geolocator:
+Now we need to get the latitudes and longitudes for the capital cities to compute the distances,we do so using a geolocator:
 
 
 ```python
@@ -146,161 +69,32 @@ Now let's see the updated dataframe with the coordinates of each city:
 
 
 ```python
+display(data.head())
 data.to_csv("Brecia_province_data_complete.csv",sep = ";")
-display(data)
 ```
 
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="0" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>City</th>
-      <th>Pop size</th>
-      <th>lat</th>
-      <th>long</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Acquafredda</td>
-      <td>1615</td>
-      <td>45.307378</td>
-      <td>10.414677</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Adro</td>
-      <td>7180</td>
-      <td>45.622402</td>
-      <td>9.961376</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Agnosine</td>
-      <td>1839</td>
-      <td>45.650676</td>
-      <td>10.353335</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Alfianello</td>
-      <td>2476</td>
-      <td>45.266975</td>
-      <td>10.148172</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Anfo</td>
-      <td>487</td>
-      <td>45.766390</td>
-      <td>10.493771</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Angolo Terme</td>
-      <td>2563</td>
-      <td>45.891036</td>
-      <td>10.146099</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Artogne</td>
-      <td>3545</td>
-      <td>45.848982</td>
-      <td>10.164556</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>199</th>
-      <td>Villa Carcina</td>
-      <td>10997</td>
-      <td>45.632214</td>
-      <td>10.194442</td>
-    </tr>
-    <tr>
-      <th>200</th>
-      <td>Villachiara</td>
-      <td>1456</td>
-      <td>45.355375</td>
-      <td>9.930966</td>
-    </tr>
-    <tr>
-      <th>201</th>
-      <td>Villanuova sul Clisi</td>
-      <td>5855</td>
-      <td>45.601680</td>
-      <td>10.453872</td>
-    </tr>
-    <tr>
-      <th>202</th>
-      <td>Vione</td>
-      <td>729</td>
-      <td>46.248402</td>
-      <td>10.447161</td>
-    </tr>
-    <tr>
-      <th>203</th>
-      <td>Visano</td>
-      <td>1953</td>
-      <td>45.318378</td>
-      <td>10.372376</td>
-    </tr>
-    <tr>
-      <th>204</th>
-      <td>Vobarno</td>
-      <td>8259</td>
-      <td>45.643643</td>
-      <td>10.499454</td>
-    </tr>
-    <tr>
-      <th>205</th>
-      <td>Zone</td>
-      <td>1110</td>
-      <td>45.763445</td>
-      <td>10.115882</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+Here is a map with all the cities to check if the coordinates are right :
 
 
-Here are all the cities plotted on a map:
+```python
+data = pd.read_csv("Brecia_province_data_complete.csv",sep = ";",index_col = 0)
+fig = Image.open("images/sflpioc.png")
+display(fig)
+```
 
 ![sflpioc.png](/assets/Single-facility-location-problem-p/sflpioc.png)
 
 ## Solving the problem
 
-Now that we have acquired all the necessary data, we can start describing the distance, the distance I've chosen is the rectilinear (also called "Manhattan") distance of the latitudes and longitudes, due to the fact that is more realistic than the euclidean distance and takes into account for multiple possible paths to reach a city, the formula is:  
+Now that we have acquired all the necessary data, we can start describing the distance, the distance i've chosen is the rectilinear (also called "Manhattan") distance, due to the fact that is more realistic than the euclidean distance and takes into account for multiple possible paths to reach a city, the formula is:  
 
 $$ d_i = |x-x_i| + |y-y_i| $$ 
 
 $$ d_i $$ = rectilinear distance between the location the i-th point   
-$$x$$ = longitude of our facility  
-$$y$$ = latitude of our location  
-$$x_i$$ = longitude of the i-th city  
-$$y_i$$ = latitude of the i-th city  
+$$x$$ = x coordinate of our location  
+$$y$$ = y coordinate of our location  
+$$x_i$$ = x coordinate of our i-th point  
+$$y_i$$ = y coordinate of our i-th point  
 
 then we weigh each distance by a factor $$ w_i $$  
  
@@ -308,7 +102,7 @@ $$f_i = d_iw_i $$
 
 our weight in this case is the city population
   
-now we can write the sum of weighted distances between the facility and the points as:  
+now we can write the sum of weighted distances between the location and the points as:  
 
 $$ F = \sum_{i = 0}^{n}f_i = \sum_{i = 0}^{n}d_iw_i = \sum_{i = 0}^{n}(|x-x_i| + |y-y_i|)w_i$$
 
@@ -334,9 +128,6 @@ location = res.x
 print("The latitude and the longitude of the optimal location is = " + str((res.x[0],res.x[1])))
 ```
 
-    The latitude and the longitude of the optimal location is = (45.59934120275753, 10.220021399923084)
-    
-
 ## Visualizing our result
 
 Now that we've got the latitude and longitude of the optimal location we can get its address and plot it on the map:
@@ -347,21 +138,17 @@ Now that we've got the latitude and longitude of the optimal location we can get
 print(geoloc.reverse(location))
 ```
 
-    Quartiere Colonnello Gherardo Vaiarini, Concesio, Comunità montana della valle Trompia, Brescia, Lombardia, 25062, Italia
-    
-
 ![sflpiwf.png](/assets/Single-facility-location-problem-p/sflpiwf.png)
 
 ## Analyzing the result
 
-The method provides the best location to minimize the average distance between the location and the clients,this is why we take in account the population size (it would be best if we knew the number of clients in each city but it is a necessary approximation in case we have no data) and also minimizes the average travel time.
+The method provides the best location to minimize the average distance between the location and the clients,this is why we take in account the population size (it would be best if we knew the number of clients in each city but it is a necessary approximation in case we have no data), and also minimizes the average travel time.
 
-In case we have a set of locations to choose for our facility, the problem becomes trivial, in fact, with a few adjustments we can take into account the investment necessary to build in a specific location, this will be subject to another work.
+In the case we have a set of location to choose for our facility, the problem becomes trivial, in fact, with a few adjustments we can take in account the investment necessary to build in a specific location, this will be subject to another work.
 
 A non-trivial problem is the multiple facility problem, which will require an approximate solution through clustering.
 
-It is important to point out that this method is general-purpose whenever our problem requires to minimize the distance between a point and a set of other points (whatever and wherever they could be).
-
+It is important to point out that this method is general purpose whenever our problem requires to minimize the distance between a point and a set of other points (whatever and wherever they could be).
 
 
 
