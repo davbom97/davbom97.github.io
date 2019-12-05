@@ -132,7 +132,7 @@ geoloc = Nominatim(user_agent="Facility_loc_problem")
 coordinates_df = pd.DataFrame(np.zeros((len(data.index),2)),index = data.index, columns = ["lat","long"])
 cities = data.loc[:,"City"].values
 i = 0
-while i != (len(cities)): #gets the latitude and longitude of every point
+while i != (len(cities)): #gets the latitude and longitude of every city
     try:
         location = geoloc.geocode(cities[i] + ", Brescia, Italy")
         coordinates_df.loc[i,"lat"] = location.latitude 
@@ -149,7 +149,7 @@ Now let's see the updated dataframe with the coordinates of each city:
 
 
 ```python
-data.to_csv("Brecia_province_data_complete.csv",sep = ";")
+data.to_csv("Brescia_province_data_complete.csv",sep = ";")
 display(data)
 ```
 
@@ -300,10 +300,10 @@ Now that we have acquired all the necessary data, we can start describing the di
 $$ d_i = |x-x_i| + |y-y_i| $$ 
 
 $$ d_i $$ = rectilinear distance between the location the i-th point   
-$$x$$ = longitude of our facility  
-$$y$$ = latitude of our location  
-$$x_i$$ = longitude of the i-th city  
-$$y_i$$ = latitude of the i-th city  
+$$x$$ = latitude of our facility  
+$$y$$ = longitude of our location  
+$$x_i$$ = latitude of the i-th city  
+$$y_i$$ = longitude of the i-th city  
 
 then we weigh each distance by a factor $$ w_i $$  
  
@@ -330,14 +330,14 @@ def objective_func(location,points_coords,points_weights):
     y_i = points_coords[:,1]
     w_i = points_weights
     return sum((abs((x_i-x))+abs((y_i-y))*w_i))
-location = [0,0] #our starting x and y points for the location
+location = [0,0] #our starting latitude and longitude for the facility
 coordinates_df = data.loc[:,["lat","long"]]
-res = opt.minimize(objective_func,location,args = (coordinates_df.values, data.loc[:,"Pop size"].values),method ="Nelder-Mead")
+res = opt.minimize(objective_func,location,args = (coordinates_df.values, data.loc[:,"Pop size"].values),method ="Nelder-Mead",tol = 10**(-9))
 location = res.x
 print("The latitude and the longitude of the optimal location is = " + str((res.x[0],res.x[1])))
 ```
 
-    The latitude and the longitude of the optimal location is = (45.59934120275753, 10.220021399923084)
+    The latitude and the longitude of the optimal location is = (45.539802200000004, 10.267566991613718)
     
 
 ## Visualizing our result

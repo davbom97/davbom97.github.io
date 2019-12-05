@@ -1,6 +1,7 @@
 ---
-layout: page
-title:  "About me"
+layout: single
+permalink: /about/
+title: About me
 ---
 ## Curiosity as a driver
 Since i started my engineering university i developed a sense of curiosity for the unknown, finding the solution to a problem
