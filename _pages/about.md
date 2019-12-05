@@ -1,4 +1,8 @@
-# Curiosity as a driver
+---
+layout: page
+title:  "About me"
+---
+## Curiosity as a driver
 Since i started my engineering university i developed a sense of curiosity for the unknown, finding the solution to a problem
 has always intrigued me and pushed me to research and improve methods and knowledge.
 
