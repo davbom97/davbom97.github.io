@@ -1,6 +1,9 @@
 ---
 layout: posts
 title:  "Single facility location problem"
+description: "In this post we will find how to choose the best location for a single facility given a set of points of interest"
+category: "Optimization"
+#tags: "optimization","location","logistics"
 ---
 
 ## Problem description  

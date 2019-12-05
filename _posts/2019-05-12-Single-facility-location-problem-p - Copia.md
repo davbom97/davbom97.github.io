@@ -1,6 +1,9 @@
 ---
 layout: posts
-title:  "Single facility location problem"
+title:  "dasdasd"
+description: "dadsa"
+category: "nkho"
+#tags: "optimization","location","logistics"
 ---
 
 ## Problem description  
@@ -121,7 +124,7 @@ display(data.head(10))
 </div>
 
 
-Now we need to get the latitudes and longitudes for the capital cities to compute the distances,we do so using a geolocator:
+Now we need to get the latitudes and longitudes of the cities to compute the distances,we do so using a geolocator:
 
 
 ```python
@@ -165,7 +168,7 @@ display(data)
         text-align: right;
     }
 </style>
-<table border="1" class="dataframe">
+<table border="0" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th></th>
@@ -226,333 +229,11 @@ display(data)
       <td>10.164556</td>
     </tr>
     <tr>
-      <th>7</th>
-      <td>Azzano Mella</td>
-      <td>2900</td>
-      <td>45.454722</td>
-      <td>10.116823</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>Bagnolo Mella</td>
-      <td>12969</td>
-      <td>45.429079</td>
-      <td>10.184370</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>Bagolino</td>
-      <td>3968</td>
-      <td>45.823561</td>
-      <td>10.462731</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Barbariga</td>
-      <td>2410</td>
-      <td>45.405077</td>
-      <td>10.054367</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Barghe</td>
-      <td>1195</td>
-      <td>45.681887</td>
-      <td>10.412170</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Bassano Bresciano</td>
-      <td>2219</td>
-      <td>45.327176</td>
-      <td>10.128370</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Bedizzole</td>
-      <td>11937</td>
-      <td>45.510571</td>
-      <td>10.423032</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Berlingo</td>
-      <td>2600</td>
-      <td>45.502980</td>
-      <td>10.043665</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Berzo Demo</td>
-      <td>1751</td>
-      <td>46.093418</td>
-      <td>10.336266</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Berzo Inferiore</td>
-      <td>2439</td>
-      <td>45.931693</td>
-      <td>10.280587</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>Bienno</td>
-      <td>3615</td>
-      <td>45.935562</td>
-      <td>10.294791</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>Bione</td>
-      <td>1471</td>
-      <td>45.672786</td>
-      <td>10.338869</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Borgo San Giacomo</td>
-      <td>5536</td>
-      <td>45.346975</td>
-      <td>9.968467</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Borgosatollo</td>
-      <td>9232</td>
-      <td>45.477262</td>
-      <td>10.240811</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>Borno</td>
-      <td>2672</td>
-      <td>45.947330</td>
-      <td>10.206404</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>Botticino</td>
-      <td>10792</td>
-      <td>45.549680</td>
-      <td>10.313259</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>Bovegno</td>
-      <td>2280</td>
-      <td>45.793307</td>
-      <td>10.273756</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>Bovezzo</td>
-      <td>7512</td>
-      <td>45.593137</td>
-      <td>10.243480</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>Brandico</td>
-      <td>1653</td>
-      <td>45.454178</td>
-      <td>10.052666</td>
-    </tr>
-    <tr>
-      <th>26</th>
-      <td>Braone</td>
-      <td>673</td>
-      <td>45.990034</td>
-      <td>10.343190</td>
-    </tr>
-    <tr>
-      <th>27</th>
-      <td>Breno</td>
-      <td>4965</td>
-      <td>45.956324</td>
-      <td>10.304040</td>
-    </tr>
-    <tr>
-      <th>28</th>
-      <td>Brescia</td>
-      <td>193879</td>
-      <td>45.539802</td>
-      <td>10.220021</td>
-    </tr>
-    <tr>
-      <th>29</th>
-      <td>Brione</td>
-      <td>703</td>
-      <td>45.642945</td>
-      <td>10.146945</td>
-    </tr>
-    <tr>
       <th>...</th>
       <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
-    </tr>
-    <tr>
-      <th>176</th>
-      <td>Sellero</td>
-      <td>1497</td>
-      <td>46.055989</td>
-      <td>10.343990</td>
-    </tr>
-    <tr>
-      <th>177</th>
-      <td>Seniga</td>
-      <td>1615</td>
-      <td>45.242674</td>
-      <td>10.177973</td>
-    </tr>
-    <tr>
-      <th>178</th>
-      <td>Serle</td>
-      <td>3119</td>
-      <td>45.570284</td>
-      <td>10.366071</td>
-    </tr>
-    <tr>
-      <th>179</th>
-      <td>Sirmione</td>
-      <td>8150</td>
-      <td>45.468849</td>
-      <td>10.607824</td>
-    </tr>
-    <tr>
-      <th>180</th>
-      <td>Soiano del Lago</td>
-      <td>1863</td>
-      <td>45.527784</td>
-      <td>10.512675</td>
-    </tr>
-    <tr>
-      <th>181</th>
-      <td>Sonico</td>
-      <td>1269</td>
-      <td>45.653173</td>
-      <td>10.277712</td>
-    </tr>
-    <tr>
-      <th>182</th>
-      <td>Sulzano</td>
-      <td>1956</td>
-      <td>45.690385</td>
-      <td>10.100963</td>
-    </tr>
-    <tr>
-      <th>183</th>
-      <td>Tavernole sul Mella</td>
-      <td>1411</td>
-      <td>45.746987</td>
-      <td>10.240565</td>
-    </tr>
-    <tr>
-      <th>184</th>
-      <td>Temù</td>
-      <td>1085</td>
-      <td>46.249214</td>
-      <td>10.468050</td>
-    </tr>
-    <tr>
-      <th>185</th>
-      <td>Tignale</td>
-      <td>1312</td>
-      <td>45.739781</td>
-      <td>10.721765</td>
-    </tr>
-    <tr>
-      <th>186</th>
-      <td>Torbole Casaglia</td>
-      <td>6332</td>
-      <td>45.505310</td>
-      <td>10.102464</td>
-    </tr>
-    <tr>
-      <th>187</th>
-      <td>Toscolano-Maderno</td>
-      <td>8111</td>
-      <td>45.634530</td>
-      <td>10.609521</td>
-    </tr>
-    <tr>
-      <th>188</th>
-      <td>Travagliato</td>
-      <td>13415</td>
-      <td>45.523905</td>
-      <td>10.079783</td>
-    </tr>
-    <tr>
-      <th>189</th>
-      <td>Tremosine</td>
-      <td>2154</td>
-      <td>45.791906</td>
-      <td>10.731131</td>
-    </tr>
-    <tr>
-      <th>190</th>
-      <td>Trenzano</td>
-      <td>5551</td>
-      <td>45.477279</td>
-      <td>10.010665</td>
-    </tr>
-    <tr>
-      <th>191</th>
-      <td>Treviso Bresciano</td>
-      <td>568</td>
-      <td>45.711935</td>
-      <td>10.462294</td>
-    </tr>
-    <tr>
-      <th>192</th>
-      <td>Urago d'Oglio</td>
-      <td>4052</td>
-      <td>45.515978</td>
-      <td>9.869661</td>
-    </tr>
-    <tr>
-      <th>193</th>
-      <td>Vallio Terme</td>
-      <td>1337</td>
-      <td>45.610193</td>
-      <td>10.390175</td>
-    </tr>
-    <tr>
-      <th>194</th>
-      <td>Valvestino</td>
-      <td>214</td>
-      <td>45.762908</td>
-      <td>10.591027</td>
-    </tr>
-    <tr>
-      <th>195</th>
-      <td>Verolanuova</td>
-      <td>8183</td>
-      <td>45.328581</td>
-      <td>10.076086</td>
-    </tr>
-    <tr>
-      <th>196</th>
-      <td>Verolavecchia</td>
-      <td>3903</td>
-      <td>45.327012</td>
-      <td>10.057256</td>
-    </tr>
-    <tr>
-      <th>197</th>
-      <td>Vestone</td>
-      <td>4509</td>
-      <td>45.710641</td>
-      <td>10.403471</td>
-    </tr>
-    <tr>
-      <th>198</th>
-      <td>Vezza d'Oglio</td>
-      <td>1475</td>
-      <td>46.240213</td>
-      <td>10.399732</td>
     </tr>
     <tr>
       <th>199</th>
@@ -605,7 +286,6 @@ display(data)
     </tr>
   </tbody>
 </table>
-<p>206 rows × 4 columns</p>
 </div>
 
 
@@ -615,15 +295,15 @@ Here are all the cities plotted on a map:
 
 ## Solving the problem
 
-Now that we have acquired all the necessary data, we can start describing the distance, the distance I've chosen is the rectilinear (also called "Manhattan") distance, due to the fact that is more realistic than the euclidean distance and takes into account for multiple possible paths to reach a city, the formula is:  
+Now that we have acquired all the necessary data, we can start describing the distance, the distance I've chosen is the rectilinear (also called "Manhattan") distance of the latitudes and longitudes, due to the fact that is more realistic than the euclidean distance and takes into account for multiple possible paths to reach a city, the formula is:  
 
 $$ d_i = |x-x_i| + |y-y_i| $$ 
 
 $$ d_i $$ = rectilinear distance between the location the i-th point   
-$$x$$ = x coordinate of our location  
-$$y$$ = y coordinate of our location  
-$$x_i$$ = x coordinate of our i-th point  
-$$y_i$$ = y coordinate of our i-th point  
+$$x$$ = longitude of our facility  
+$$y$$ = latitude of our location  
+$$x_i$$ = longitude of the i-th city  
+$$y_i$$ = latitude of the i-th city  
 
 then we weigh each distance by a factor $$ w_i $$  
  
@@ -631,7 +311,7 @@ $$f_i = d_iw_i $$
 
 our weight in this case is the city population
   
-now we can write the sum of weighted distances between the location and the points as:  
+now we can write the sum of weighted distances between the facility and the points as:  
 
 $$ F = \sum_{i = 0}^{n}f_i = \sum_{i = 0}^{n}d_iw_i = \sum_{i = 0}^{n}(|x-x_i| + |y-y_i|)w_i$$
 
@@ -670,7 +350,7 @@ Now that we've got the latitude and longitude of the optimal location we can get
 print(geoloc.reverse(location))
 ```
 
-    Chiesa di San Giuseppe, Via Girolamo Sangervasio, Quartiere Colonnello Gherardo Vaiarini, Concesio, Comunità montana della valle Trompia, Brescia, Lombardia, 25062, Italia
+    Quartiere Colonnello Gherardo Vaiarini, Concesio, Comunità montana della valle Trompia, Brescia, Lombardia, 25062, Italia
     
 
 ![sflpiwf.png](/assets/Single-facility-location-problem-p/sflpiwf.png)
