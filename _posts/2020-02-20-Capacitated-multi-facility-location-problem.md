@@ -1,3 +1,10 @@
+---
+layout: posts
+title:  "Capacitated multi facility location problem"
+description: "In this post we will find how to choose the best location for multiple capacitated facilities given a set of points of interest"
+category: "Optimization"
+#tags: "optimization","location","logistics"
+---
 ## Problem description
 
 The capacitated multi-facility location problem is an extension of the single facility problem to **n facilities simultaneously**.
