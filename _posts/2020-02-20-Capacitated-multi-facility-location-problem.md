@@ -7,7 +7,7 @@ category: "Optimization"
 ---
 In this post we will find out how to choose the best location for multiple capacitated facilities given a set of points of interest
 
-code and data used: https://github.com/davbom97/source
+Code and data used: <https://github.com/davbom97/source>
 ## Problem description
 
 The capacitated multi-facility location problem is an extension of the single facility problem to **n facilities simultaneously**.

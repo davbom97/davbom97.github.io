@@ -7,7 +7,7 @@ category: "Optimization"
 ---
 In this post we will find out how to choose the best location for a single uncapacitated facility given a set of points of interest
 
-code and data used: https://github.com/davbom97/source
+Code and data used: <https://github.com/davbom97/source>
 ## Problem description  
 
 Suppose we pose ourselves the following problem: given some known factors, where should we build our facility (a supermarket, a shop, a distribution center, etc.) so we maximize our profits.  
