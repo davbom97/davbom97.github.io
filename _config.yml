@@ -235,6 +235,7 @@ plugins:
   - jekyll-feed
   - jekyll-include-cache
   - jekyll-archives
+  - jekyll-seo-tag
 jekyll-archives:
   enabled : ["category"]
   layout : "archive"
