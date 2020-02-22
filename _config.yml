@@ -16,11 +16,11 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Project Portfolio"
+title                    : "Optimization and Analysis"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Davide Bombacigno"
-description              : "Operations management and Analytics Portfolio, using python"
+description              : "Solving Operations management and Analytics problems"
 url                      : "https://davbom97.github.io/"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "davbom97/davbom97.github.io"
