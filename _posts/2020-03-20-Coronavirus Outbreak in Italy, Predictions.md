@@ -1,3 +1,10 @@
+---
+layout: posts
+title:  "Coronavirus Outbreak in Italy, Predictions"
+description: "In this post we try to predict the trend of the SARS-CoV-2 in italy"
+category: "Data Analysis"
+#tags: "optimization","location","logistics"
+---
 ## Problem description
 
 Source of data used: <https://github.com/pcm-dpc/COVID-19>
