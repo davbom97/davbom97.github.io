@@ -5,11 +5,8 @@ description: "In this post we try to predict the trend of the SARS-CoV-2 in ital
 category: "Data Analysis"
 #tags: "optimization","location","logistics"
 ---
-## Problem description
 
-Source of data used: <https://github.com/pcm-dpc/COVID-19>
-
-On this post we try to give a prediction the of SARS-CoV-2 outbreak in Italy.
+In this post we try to give a prediction the of SARS-CoV-2 outbreak in Italy.
 
 To do this we assume that the number of confirmed cases follows a logistc function:
 
@@ -40,7 +37,6 @@ from IPython.display import display
 
 ```python
 italy_data = pd.read_csv("dpc-covid19-ita-andamento-nazionale 20-03-2020.csv")
-#china_data = pd.read_csv("evolucion_de_casos_acumul.csv",sep = ";")
 italy_data = pd.DataFrame({"date":italy_data["data"],
                            "total_cases":italy_data["totale_casi"],
                            "recovered":italy_data["dimessi_guariti"],
@@ -612,6 +608,8 @@ display(italy_dataframe[italy_dataframe.index == infected_peak_date])
 
 ## Notes
 
-An important observation must be made to the percentage of deaths, which seems high compared to the one observed in china during the outbreak
+An important observation must be made to the percentage of deaths, which seems high compared to the one observed in china and other countries during the outbreak
 
 You can find the code used on my github repository <https://github.com/davbom97/source>
+
+Source of data used: <https://github.com/pcm-dpc/COVID-19>
