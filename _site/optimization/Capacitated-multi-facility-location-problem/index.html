@@ -1,0 +1,1189 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.17.2 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Capacitated multi facility location problem - Optimization and Analysis</title>
+<meta name="description" content="In this post we will find out how to choose the best location for multiple capacitated facilities given a set of points of interest">
+
+
+  <meta name="author" content="Davide Bombacigno">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Optimization and Analysis">
+<meta property="og:title" content="Capacitated multi facility location problem">
+<meta property="og:url" content="http://localhost:4000/optimization/Capacitated-multi-facility-location-problem/">
+
+
+  <meta property="og:description" content="In this post we will find out how to choose the best location for multiple capacitated facilities given a set of points of interest">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-02-20T00:00:00+01:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/optimization/Capacitated-multi-facility-location-problem/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Davide Bombacigno",
+      "url": "http://localhost:4000/",
+      "sameAs": ["https://www.linkedin.com/in/davide-bombacigno-8100bb136/"]
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Optimization and Analysis Feed">
+
+<!-- https://t.co/dKP3o1e -->
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-153887212-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-153887212-1');
+</script>
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--posts">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          <h1>
+            Optimization and Analysis
+          </h1>
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://davbom97.github.io/about" >About</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://davbom97.github.io/projects" >Projects</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Davide Bombacigno</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Interested in solutions, and people</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Bari, Italy</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:bombacigno.davide@gmail.com">
+            <meta itemprop="email" content="bombacigno.davide@gmail.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" target ="_blank" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+
+-->
+<li>
+  <a href="https://github.com/davbom97" target="_blank" itemprop="sameAs" rel="nofollow noopener noreferrer">
+    <i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub
+  </a>
+</li>
+<li>
+  <a href="https://www.linkedin.com/in/davide-bombacigno-8100bb136/" target="_blank" itemprop="sameAs" rel="nofollow noopener noreferrer">
+    <i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn
+  </a>
+</li>
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <div class="archive">
+    
+      <h1 id="page-title" class="page__title">Capacitated multi facility location problem</h1>
+    
+    <p>In this post we will find out how to choose the best location for multiple capacitated facilities given a set of points of interest</p>
+
+<p>Code and data used: <a href="https://github.com/davbom97/source">https://github.com/davbom97/source</a></p>
+<h2 id="problem-description">Problem description</h2>
+
+<p>The capacitated multi-facility location problem is an extension of the single facility problem to <strong>n facilities simultaneously</strong>.
+In this project, the objective is to find the optimal location of multiple facilities at the same time, given a maximum output capacity, in Italy.</p>
+
+<p>The hypotheses are quite the same as the single facility location problem but <strong>we dropped the hypothesis that a facility can supply infinite demand.</strong></p>
+
+<p>First we load the data about all the italian cities with more than 5000 population (ISTAT 2013 data)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">from</span> <span class="nn">geopy.geocoders</span> <span class="kn">import</span> <span class="n">Nominatim</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="n">px</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="n">go</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">"cities_data_fromMax_to5mil.csv"</span><span class="p">)</span> 
+<span class="n">display</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="n">display</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>city_name</th>
+      <th>pop_size</th>
+      <th>lat</th>
+      <th>long</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Varallo Pombia</td>
+      <td>5004</td>
+      <td>45.665904</td>
+      <td>8.632693</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Certosa di Pavia</td>
+      <td>5004</td>
+      <td>45.257015</td>
+      <td>9.148114</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Mistretta</td>
+      <td>5014</td>
+      <td>37.929885</td>
+      <td>14.362873</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Santa Teresa Gallura</td>
+      <td>5018</td>
+      <td>41.241377</td>
+      <td>9.188518</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Alzate Brianza</td>
+      <td>5019</td>
+      <td>45.769778</td>
+      <td>9.182041</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>city_name</th>
+      <th>pop_size</th>
+      <th>lat</th>
+      <th>long</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2370</th>
+      <td>Palermo</td>
+      <td>657561</td>
+      <td>38.111227</td>
+      <td>13.352443</td>
+    </tr>
+    <tr>
+      <th>2371</th>
+      <td>Torino</td>
+      <td>872367</td>
+      <td>45.067755</td>
+      <td>7.682489</td>
+    </tr>
+    <tr>
+      <th>2372</th>
+      <td>Napoli</td>
+      <td>962003</td>
+      <td>40.835934</td>
+      <td>14.248783</td>
+    </tr>
+    <tr>
+      <th>2373</th>
+      <td>Milano</td>
+      <td>1242123</td>
+      <td>45.466800</td>
+      <td>9.190500</td>
+    </tr>
+    <tr>
+      <th>2374</th>
+      <td>Roma</td>
+      <td>2617175</td>
+      <td>41.894802</td>
+      <td>12.485338</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>The latitude and longitude are retrieved the same way as explained in the single facility location problem.<br />
+Next it is important to check if the data is representative, we sum all the population of the cities we are considering and divide them by the total population of Italy at that time.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="nb">round</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s">"pop_size"</span><span class="p">]</span><span class="o">.</span><span class="nb">sum</span><span class="p">()</span><span class="o">/</span><span class="mi">59433744</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0.822
+</code></pre></div></div>
+
+<p>The cities represent the 82.2% of all the population of italy which is representative enough.<br />
+Suppose this time that the number of people buying our product is the 10% of the population, equally distributed across all the cities.
+Then we must calculate the weight of each city by dividing the number of potential clients in each city by the total number of clients</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pt_clients_perc</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">clients</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">round</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s">"pop_size"</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">*</span><span class="n">pt_clients_perc</span><span class="p">)</span>
+<span class="n">clients_perc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">clients</span><span class="o">/</span><span class="n">clients</span><span class="o">.</span><span class="nb">sum</span><span class="p">(),</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s">"weight"</span><span class="p">])</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">clients_perc</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">clients</span><span class="p">,</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s">"number_of_clients"</span><span class="p">]))</span>
+<span class="c1">#data = data.join(clients)
+</span><span class="n">display</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>city_name</th>
+      <th>pop_size</th>
+      <th>lat</th>
+      <th>long</th>
+      <th>weight</th>
+      <th>number_of_clients</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Varallo Pombia</td>
+      <td>5004</td>
+      <td>45.665904</td>
+      <td>8.632693</td>
+      <td>0.000102</td>
+      <td>500.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Certosa di Pavia</td>
+      <td>5004</td>
+      <td>45.257015</td>
+      <td>9.148114</td>
+      <td>0.000102</td>
+      <td>500.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Mistretta</td>
+      <td>5014</td>
+      <td>37.929885</td>
+      <td>14.362873</td>
+      <td>0.000103</td>
+      <td>501.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Santa Teresa Gallura</td>
+      <td>5018</td>
+      <td>41.241377</td>
+      <td>9.188518</td>
+      <td>0.000103</td>
+      <td>502.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Alzate Brianza</td>
+      <td>5019</td>
+      <td>45.769778</td>
+      <td>9.182041</td>
+      <td>0.000103</td>
+      <td>502.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>The way we will find the solution is by using a clustering method, in particular the K-Means algorithm, which seeks to minimize the distance between each point in a cluster (the cities assigned to a particular facility) and the centre of the cluster (the facility itself)</p>
+
+<p>First we initialize the clustering process by putting all the cities in one cluster</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">coordinates_df</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s">"lat"</span><span class="p">,</span><span class="s">"long"</span><span class="p">]]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1">#solver.fit(coordinates_df,sample_weight = data.loc[:,"%clients"] )
+#location = solver.cluster_centers_
+#labels = data.set_index(solver.labels_)
+</span></code></pre></div></div>
+
+<p>Now we introduce a constraint max_capacity, defined as the maximum amount of product units the facility can output in one year, divided by the total demand of the output in one year, for a single product</p>
+
+<p>suppose the maximum output is 1500 units/day the maximum capacity is:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">units_day</span> <span class="o">=</span> <span class="mi">1500</span>
+<span class="n">units_year</span> <span class="o">=</span> <span class="n">units_day</span><span class="o">*</span><span class="mi">365</span>
+<span class="n">max_capacity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">round</span><span class="p">(</span><span class="n">units_year</span><span class="o">/</span><span class="n">clients</span><span class="o">.</span><span class="nb">sum</span><span class="p">(),</span><span class="mi">6</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">"The maximum capacity for each facility is {max_capacity}"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">"Which equals to a maximum yearly output of {units_year} units/year "</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The maximum capacity for each facility is 0.112119
+Which equals to a maximum yearly output of 547500 units/year 
+</code></pre></div></div>
+
+<p>The total sum of the demand (or weights) for i-th facility must be less or equal than the units_year (or max_capacity).</p>
+
+<p>Next we define the function find_optimum that takes in the minimum amount of facilities we want to locate and find an optimal amount of facilities with the aforementioned contraint.
+Then, among the possible solutions we calculate the the average saturation rate, defined as :</p>
+
+<script type="math/tex; mode=display">\textrm{Saturation rate}_j = \frac{\textrm{output}_j}{\textrm{maximum output}} = \frac{\sum w_{ij}}{\textrm{maximum output}}</script>
+
+<p><script type="math/tex">\textrm{output}_j = \textrm{The sum of the weights of the cities supplied by the j-th facility}</script>
+<script type="math/tex">w_{ij} = \textrm{The weight of the i-th city supplied by the j-th facility}</script>
+<script type="math/tex">\textrm{maximum output} = \textrm{The maximum sum of weights a facility can supply}</script></p>
+
+<p>In this case, given a maximum daily output of 1500 units/day:</p>
+
+<script type="math/tex; mode=display">\textrm{Saturation rate}_j = \frac{\textrm{output}_j}{0.1129}</script>
+
+<p>In the end we pick the combination of facilities with the maximum saturation rate.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">find_optimum</span><span class="p">(</span><span class="n">starting_n</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">starting_n</span>
+    <span class="n">optimal_solution</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">optimal_cluster_n</span> <span class="o">=</span> <span class="mi">10000</span>  <span class="c1">#initializes the variables that will hold the optimum
+</span>    <span class="n">optimal_array</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#optimal array will contain the all the possible optimum solutions
+</span>    <span class="n">optimal_capacity</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#optimal capacity will contain the output of the faclities in a given solution
+</span>    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">print</span> <span class="p">(</span><span class="n">f</span><span class="s">"Trying number of facilities = {n}"</span><span class="p">)</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="p">)))</span>
+        <span class="c1">#These lines will initialize the labels array which will hold the clusters 
+</span>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">):</span>
+            <span class="n">solver</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n_init</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">max_iter</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span><span class="n">tol</span> <span class="o">=</span> <span class="mf">1e-9</span><span class="p">,</span><span class="n">init</span> <span class="o">=</span> <span class="s">"k-means++"</span><span class="p">)</span>
+            <span class="n">solver</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">coordinates_df</span><span class="p">,</span><span class="n">sample_weight</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s">"weight"</span><span class="p">])</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">solver</span><span class="o">.</span><span class="n">labels_</span><span class="p">,</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s">"label"</span><span class="p">])</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">solver</span><span class="o">.</span><span class="n">labels_</span><span class="p">)</span>
+            <span class="c1">#fits the kmeans algorithm to the data points
+</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+                <span class="n">used_capacity</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="s">"weight"</span><span class="p">]</span><span class="o">.</span><span class="nb">sum</span><span class="p">()</span><span class="o">.</span><span class="n">values</span>
+            <span class="c1">#computes used_capacity which measures how much the capacity of each facility is saturated
+</span>            <span class="k">if</span> <span class="nb">all</span><span class="p">([</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">max_capacity</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">used_capacity</span><span class="p">]):</span> 
+                <span class="c1">#if the capacity of all the facilities is not saturated, it is considered the minimum amount of facilities
+</span>                <span class="c1">#that satisfy the capacity contraint,and will search an optimum among them,
+</span>                <span class="c1">#otherwise the loop continues
+</span>                <span class="n">optimal_cluster_n</span> <span class="o">=</span> <span class="n">n</span>
+                <span class="n">optimal_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">solver</span><span class="p">)</span>
+                <span class="n">optimal_capacity</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">used_capacity</span><span class="p">)</span>
+                
+        <span class="k">if</span> <span class="n">optimal_array</span><span class="p">:</span>
+            <span class="c1">#calculates the average output of each found solution, then picks the one with the maximum avg output
+</span>            <span class="n">optimal_capacity_avg</span> <span class="o">=</span> <span class="p">[</span><span class="n">facility_used_capacity</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="k">for</span> <span class="n">facility_used_capacity</span> <span class="ow">in</span> <span class="n">optimal_capacity</span><span class="p">]</span>
+            <span class="n">optimal_saturation</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">optimal_capacity_avg</span><span class="p">)</span>
+            <span class="n">indx</span> <span class="o">=</span> <span class="n">optimal_capacity_avg</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">optimal_saturation</span><span class="p">)</span>
+            <span class="n">used_capacity</span> <span class="o">=</span> <span class="n">optimal_capacity</span><span class="p">[</span><span class="n">indx</span><span class="p">]</span>
+            <span class="n">optimal_solution</span> <span class="o">=</span> <span class="n">optimal_array</span><span class="p">[</span><span class="n">indx</span><span class="p">]</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"Done!"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">optimal_cluster_n</span><span class="p">,</span><span class="n">optimal_solution</span><span class="p">,</span><span class="n">used_capacity</span>
+        <span class="k">if</span> <span class="n">optimal_solution</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">n</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="k">continue</span> 
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">break</span>
+</code></pre></div></div>
+
+<p>We run the algorithm starting from one facility :</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cluster_n</span><span class="p">,</span><span class="n">solver</span><span class="p">,</span><span class="n">used_capacity</span> <span class="o">=</span> <span class="n">find_optimum</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">location</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">cluster_centers_</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">solver</span><span class="o">.</span><span class="n">labels_</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Trying number of facilities = 9
+Trying number of facilities = 10
+Trying number of facilities = 11
+Trying number of facilities = 12
+Trying number of facilities = 13
+Trying number of facilities = 14
+Trying number of facilities = 15
+Trying number of facilities = 16
+Trying number of facilities = 17
+Done!
+</code></pre></div></div>
+
+<p><strong>We might run the algorithm multiple times, becouse it does not guarantee that it outputs a feasible location for each facility.</strong><br />
+Then we plot our found facilities on a map to check feasibility of the results:
+<img src="/assets/Capacitated-multi-facility-location-problem/cmflp_lm.png" alt="cmflp_lm.png" /></p>
+
+<p>Next we locate the facilities from the coordinates</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">geoloc</span> <span class="o">=</span> <span class="n">Nominatim</span><span class="p">(</span><span class="n">user_agent</span><span class="o">=</span><span class="s">"Facility_loc_problem"</span><span class="p">)</span>
+<span class="n">addresses</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="bp">True</span> <span class="p">:</span> 
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">location</span><span class="p">):</span>
+            <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">loc</span> <span class="o">=</span> <span class="n">geoloc</span><span class="o">.</span><span class="n">reverse</span><span class="p">(</span><span class="n">location</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">exactly_one</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+            <span class="n">addresses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">i</span><span class="o">+=</span><span class="mi">1</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+    
+<span class="n">facilities</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">location</span><span class="p">,</span><span class="n">index</span> <span class="o">=</span> <span class="n">addresses</span><span class="p">,</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Latitude"</span><span class="p">,</span><span class="s">"Longitude"</span><span class="p">])</span>
+<span class="n">facilities</span> <span class="o">=</span> <span class="n">facilities</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">cluster_n</span><span class="p">),</span><span class="n">index</span> <span class="o">=</span> <span class="n">addresses</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Cluster number"</span><span class="p">]))</span>
+</code></pre></div></div>
+
+<p>The last step is to calculate the saturation rate and display the results</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">"The optimal number of facilities is = {cluster_n}"</span><span class="p">)</span>
+<span class="n">saturation_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">used_capacity</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">cluster_n</span><span class="o">*</span><span class="n">max_capacity</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">saturation_pctg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">around</span><span class="p">(</span><span class="n">used_capacity</span><span class="o">*</span><span class="mi">100</span><span class="o">/</span><span class="n">max_capacity</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">facility_output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="nb">round</span><span class="p">(</span><span class="n">saturation_pctg</span><span class="o">/</span><span class="mi">100</span><span class="o">*</span><span class="n">units_day</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s">"The average saturation rate is = {saturation_avg}</span><span class="si">%</span><span class="s">"</span><span class="p">)</span>
+<span class="n">facilities</span> <span class="o">=</span> <span class="n">facilities</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">saturation_pctg</span><span class="p">,</span>
+                                          <span class="n">index</span> <span class="o">=</span> <span class="n">facilities</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+                                          <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Saturation rate(</span><span class="si">%</span><span class="s">)"</span><span class="p">]))</span>
+<span class="n">facilities</span> <span class="o">=</span> <span class="n">facilities</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">facility_output</span><span class="p">,</span>
+                                          <span class="n">index</span> <span class="o">=</span> <span class="n">facilities</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+                                          <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Daily facility output(pieces/day)"</span><span class="p">]))</span>
+<span class="n">facilities</span> <span class="o">=</span> <span class="n">facilities</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">facility_output</span><span class="o">*</span><span class="mi">365</span><span class="p">,</span>
+                                          <span class="n">index</span> <span class="o">=</span> <span class="n">facilities</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+                                          <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Yearly facility output(pieces/year)"</span><span class="p">]))</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The optimal number of facilities is = 17
+The average saturation rate is = 52.47%
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">labels</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">set_names</span><span class="p">(</span><span class="s">"Cluster number"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">facilities</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">labels</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Cluster number</th>
+      <th>Saturation rate(%)</th>
+      <th>Daily facility output(pieces/day)</th>
+      <th>Yearly facility output(pieces/year)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Poggio del Lupo, Misterbianco, Catania, Sicilia, 95045, Italia</th>
+      <td>37.545541</td>
+      <td>15.038274</td>
+      <td>0</td>
+      <td>48.32</td>
+      <td>725.0</td>
+      <td>264625.0</td>
+    </tr>
+    <tr>
+      <th>Via Simoncini, Ville, Serravalle Pistoiese, Pistoia, Toscana, 51130, Italia</th>
+      <td>43.889483</td>
+      <td>10.859511</td>
+      <td>1</td>
+      <td>70.31</td>
+      <td>1055.0</td>
+      <td>385075.0</td>
+    </tr>
+    <tr>
+      <th>Cartiera, Loreto Aprutino, Pescara, Abruzzo, 65014, Italia</th>
+      <td>42.405641</td>
+      <td>13.996831</td>
+      <td>2</td>
+      <td>22.45</td>
+      <td>337.0</td>
+      <td>123005.0</td>
+    </tr>
+    <tr>
+      <th>Santa Maria in Prato, San Zenone al Lambro, Milano, Lombardia, 26852, Italia</th>
+      <td>45.316446</td>
+      <td>9.363823</td>
+      <td>3</td>
+      <td>95.78</td>
+      <td>1437.0</td>
+      <td>524505.0</td>
+    </tr>
+    <tr>
+      <th>Erchie, Brindisi, Puglia, 72028, Italia</th>
+      <td>40.451648</td>
+      <td>17.710318</td>
+      <td>4</td>
+      <td>32.12</td>
+      <td>482.0</td>
+      <td>175930.0</td>
+    </tr>
+    <tr>
+      <th>Circonvallazione sud, Asuni, Aristanis/Oristano, Sardegna, Italia</th>
+      <td>39.861941</td>
+      <td>8.945599</td>
+      <td>5</td>
+      <td>19.93</td>
+      <td>299.0</td>
+      <td>109135.0</td>
+    </tr>
+    <tr>
+      <th>Via Brigata Emilia, Pero, Breda di Piave, Treviso, Veneto, 31048, Italia</th>
+      <td>45.700320</td>
+      <td>12.342201</td>
+      <td>6</td>
+      <td>70.84</td>
+      <td>1063.0</td>
+      <td>387995.0</td>
+    </tr>
+    <tr>
+      <th>Via Prenestina, Quartiere XIX Prenestino-Centocelle, Roma, Roma Capitale, Lazio, 00171, Italia</th>
+      <td>41.894788</td>
+      <td>12.560785</td>
+      <td>7</td>
+      <td>91.55</td>
+      <td>1373.0</td>
+      <td>501145.0</td>
+    </tr>
+    <tr>
+      <th>Parcheggio Stadio, Via Palermo, San Bernardino, Oltrestazione, Legnano, Milano, Lombardia, 20025, Italia</th>
+      <td>45.588261</td>
+      <td>8.910030</td>
+      <td>8</td>
+      <td>55.69</td>
+      <td>835.0</td>
+      <td>304775.0</td>
+    </tr>
+    <tr>
+      <th>Mulino Drago, Strada statale Corleonese Agrigentina, Casa Sant'Ippolito, Corleone, Palermo, Sicilia, 90030, Italia</th>
+      <td>37.860989</td>
+      <td>13.297069</td>
+      <td>9</td>
+      <td>36.99</td>
+      <td>555.0</td>
+      <td>202575.0</td>
+    </tr>
+    <tr>
+      <th>Via Tetti Laghi, Cascina Reggenza, Carmagnola, Torino, Piemonte, 10022, Italia</th>
+      <td>44.885312</td>
+      <td>7.767223</td>
+      <td>10</td>
+      <td>50.88</td>
+      <td>763.0</td>
+      <td>278495.0</td>
+    </tr>
+    <tr>
+      <th>Via Paradiso, Maldritto, Castelbelforte, Mantova, Lombardia, 46032, Italia</th>
+      <td>45.223828</td>
+      <td>10.887862</td>
+      <td>11</td>
+      <td>77.83</td>
+      <td>1167.0</td>
+      <td>425955.0</td>
+    </tr>
+    <tr>
+      <th>Valcarecce, Cingoli, Macerata, Marche, 60039, Italia</th>
+      <td>43.402066</td>
+      <td>13.177101</td>
+      <td>12</td>
+      <td>22.85</td>
+      <td>343.0</td>
+      <td>125195.0</td>
+    </tr>
+    <tr>
+      <th>strada Liardi Iunci, Iunci Soprano, Catanzaro, Calabria, 88049, Italia</th>
+      <td>39.096233</td>
+      <td>16.353780</td>
+      <td>13</td>
+      <td>20.05</td>
+      <td>301.0</td>
+      <td>109865.0</td>
+    </tr>
+    <tr>
+      <th>Masseria Friuli, Corato, Bari, Puglia, Italia</th>
+      <td>41.106532</td>
+      <td>16.329850</td>
+      <td>14</td>
+      <td>44.45</td>
+      <td>667.0</td>
+      <td>243455.0</td>
+    </tr>
+    <tr>
+      <th>Cutinelli, Sant'Anastasia, Napoli, Campania, 80038, Italia</th>
+      <td>40.889406</td>
+      <td>14.389779</td>
+      <td>15</td>
+      <td>95.82</td>
+      <td>1437.0</td>
+      <td>524505.0</td>
+    </tr>
+    <tr>
+      <th>Turrito, Sarsina, Unione dei comuni Valle del Savio, Forlì-Cesena, Emilia-Romagna, Italia</th>
+      <td>43.907781</td>
+      <td>12.121604</td>
+      <td>16</td>
+      <td>36.05</td>
+      <td>541.0</td>
+      <td>197465.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>city_name</th>
+      <th>pop_size</th>
+      <th>lat</th>
+      <th>long</th>
+      <th>weight</th>
+      <th>number_of_clients</th>
+    </tr>
+    <tr>
+      <th>Cluster number</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>8</th>
+      <td>Varallo Pombia</td>
+      <td>5004</td>
+      <td>45.665904</td>
+      <td>8.632693</td>
+      <td>0.000102</td>
+      <td>500.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Certosa di Pavia</td>
+      <td>5004</td>
+      <td>45.257015</td>
+      <td>9.148114</td>
+      <td>0.000102</td>
+      <td>500.0</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>Mistretta</td>
+      <td>5014</td>
+      <td>37.929885</td>
+      <td>14.362873</td>
+      <td>0.000103</td>
+      <td>501.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Santa Teresa Gallura</td>
+      <td>5018</td>
+      <td>41.241377</td>
+      <td>9.188518</td>
+      <td>0.000103</td>
+      <td>502.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Alzate Brianza</td>
+      <td>5019</td>
+      <td>45.769778</td>
+      <td>9.182041</td>
+      <td>0.000103</td>
+      <td>502.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Then we save the facilities and the clusters for use or for further analysis using pickle</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">save</span> <span class="o">=</span> <span class="p">[</span><span class="n">labels</span><span class="p">,</span><span class="n">facilities</span><span class="p">]</span>
+<span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">save</span><span class="p">,</span><span class="nb">open</span><span class="p">(</span><span class="s">"Multi_facility_clients_and_facilities.pkl"</span><span class="p">,</span><span class="s">"wb"</span><span class="p">))</span>
+</code></pre></div></div>
+
+
+<ul class="taxonomy__index">
+  
+  
+    <li>
+      <a href="#2020">
+        <strong>2020</strong> <span class="taxonomy__count">2</span>
+      </a>
+    </li>
+  
+    <li>
+      <a href="#2019">
+        <strong>2019</strong> <span class="taxonomy__count">1</span>
+      </a>
+    </li>
+  
+</ul>
+
+
+
+  <section id="2020" class="taxonomy__section">
+    <h2 class="archive__subtitle">2020</h2>
+    <div class="entries-list">
+      
+        
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/data%20analysis/Analysis-of-videogames-market,-biggest-market-and-best-selling-genres/" rel="permalink">Analysis of videogames market, biggest market and best selling genres
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  13 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">We will analyze the sales data of the videogames market using the data about games with more than 100000 copies sold
+</p>
+  </article>
+</div>
+
+      
+        
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/optimization/Capacitated-multi-facility-location-problem/" rel="permalink">Capacitated multi facility location problem
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  9 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">In this post we will find out how to choose the best location for multiple capacitated facilities given a set of points of interest
+</p>
+  </article>
+</div>
+
+      
+    </div>
+    <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
+  </section>
+
+  <section id="2019" class="taxonomy__section">
+    <h2 class="archive__subtitle">2019</h2>
+    <div class="entries-list">
+      
+        
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/optimization/Single-facility-location-problem/" rel="permalink">Single facility location problem
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  6 minute read
+
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">In this post we will find out how to choose the best location for a single uncapacitated facility given a set of points of interest
+</p>
+  </article>
+</div>
+
+      
+    </div>
+    <a href="#page-title" class="back-to-top">Back to top &uarr;</a>
+  </section>
+
+
+  </div>
+</div>
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 Davide Bombacigno. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://kit.fontawesome.com/4eee35f757.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+
+  </body>
+</html>

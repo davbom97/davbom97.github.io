@@ -378,7 +378,7 @@ Image(img_bytes)
 
 
 
-![png](output_26_0.png)
+![png](/assets/Analysis-of-videogames-market,-biggest-market-and-best-selling-genres/output_26_0.png)
 
 
 
@@ -400,7 +400,7 @@ Image(img_bytes)
 
 
 
-![png](output_27_0.png)
+![png](/assets/Analysis-of-videogames-market,-biggest-market-and-best-selling-genres/output_27_0.png)
 
 
 
@@ -427,7 +427,7 @@ Image(img_bytes)
 
 
 
-![png](output_28_0.png)
+![png](/assets/Analysis-of-videogames-market,-biggest-market-and-best-selling-genres/output_28_0.png)
 
 
 
@@ -482,7 +482,7 @@ Image(img_bytes)
 
 
 
-![png](output_36_0.png)
+![png](/assets/Analysis-of-videogames-market,-biggest-market-and-best-selling-genres/output_36_0.png)
 
 
 
@@ -792,7 +792,7 @@ Image(img_bytes)
 
 
 
-![png](output_43_0.png)
+![png](/assets/Analysis-of-videogames-market,-biggest-market-and-best-selling-genres/output_43_0.png)
 
 
 
@@ -1007,7 +1007,7 @@ Image(img_bytes)
 
 
 
-![png](output_49_0.png)
+![png](/assets/Analysis-of-videogames-market,-biggest-market-and-best-selling-genres/output_49_0.png)
 
 
 
@@ -1057,7 +1057,7 @@ Image(img_bytes)
 
 
 
-![png](output_57_0.png)
+![png](/assets/Analysis-of-videogames-market,-biggest-market-and-best-selling-genres/output_57_0.png)
 
 
 
@@ -1071,7 +1071,7 @@ Image(filename="boxplot_zoomed.png")
 
 
 
-![png](output_59_0.png)
+![png](/assets/Analysis-of-videogames-market,-biggest-market-and-best-selling-genres/output_59_0.png)
 
 
 
@@ -1116,7 +1116,7 @@ Image(img_bytes)
 
 
 
-![png](output_62_2.png)
+![png](/assets/Analysis-of-videogames-market,-biggest-market-and-best-selling-genres/output_62_2.png)
 
 
 
