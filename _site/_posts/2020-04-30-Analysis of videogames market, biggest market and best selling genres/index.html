@@ -629,7 +629,7 @@ dtype: int64
 </table>
 </div>
 
-<p><img src="/assets/Analysis-of-videogames-market,-biggest-market-and-best-selling-genres/output_22_1.png" alt="output_22_1.png" /></p>
+<p><img src="/assets/Analysis of videogames market, biggest market and best selling genres/output_22_1.png" alt="output_22_1.png" /></p>
 
 <p>From the data emerges that the biggest market is the North American one, making up to almost the 50% of the total sales, followed by the European and the Japanese ones.</p>
 
@@ -648,7 +648,7 @@ dtype: int64
 <span class="n">Image</span><span class="p">(</span><span class="n">img_bytes</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p><img src="/assets/Analysis-of-videogames-market,-biggest-market-and-best-selling-genres/output_26_0.png" alt="png" /></p>
+<p><img src="/assets/Analysis of videogames market, biggest market and best selling genres/output_26_0.png" alt="png" /></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">market_data</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span> <span class="n">market_data</span><span class="p">[</span><span class="s">"NA_Sales"</span><span class="p">],</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"NA Sales"</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="s">"lines+markers"</span><span class="p">))</span>
@@ -663,7 +663,7 @@ dtype: int64
 <span class="n">Image</span><span class="p">(</span><span class="n">img_bytes</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p><img src="/assets/Analysis-of-videogames-market,-biggest-market-and-best-selling-genres/output_27_0.png" alt="png" /></p>
+<p><img src="/assets/Analysis of videogames market, biggest market and best selling genres/output_27_0.png" alt="png" /></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">market_sales_change</span> <span class="o">=</span> <span class="p">(</span><span class="n">market_data</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="nb">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">total_sales_change</span> <span class="o">=</span> <span class="p">(</span><span class="n">market_data</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">pct_change</span><span class="p">()</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="nb">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
@@ -683,7 +683,7 @@ dtype: int64
 
 </code></pre></div></div>
 
-<p><img src="/assets/Analysis-of-videogames-market,-biggest-market-and-best-selling-genres/output_28_0.png" alt="png" /></p>
+<p><img src="/assets/Analysis of videogames market, biggest market and best selling genres/output_28_0.png" alt="png" /></p>
 
 <p>The data shows the growth of the videogames markets and the effects of the economic cycles and bubbles (the dot-com bubble in 2000, the crisis of 2008 on the NA sales and the European debt crisis of 2010-2011 on the EU markets).</p>
 
@@ -725,7 +725,7 @@ dtype: float64
 <span class="n">Image</span><span class="p">(</span><span class="n">img_bytes</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p><img src="/assets/Analysis-of-videogames-market,-biggest-market-and-best-selling-genres/output_36_0.png" alt="png" /></p>
+<p><img src="/assets/Analysis of videogames market, biggest market and best selling genres/output_36_0.png" alt="png" /></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"The top 3 selling genres in the NA market are:"</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">market_sales_genre</span><span class="p">[</span><span class="s">"NA_Sales"</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)[:</span><span class="mi">3</span><span class="p">])</span>
@@ -1020,7 +1020,7 @@ Name: Other_Sales, dtype: float64
 <span class="n">Image</span><span class="p">(</span><span class="n">img_bytes</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p><img src="/assets/Analysis-of-videogames-market,-biggest-market-and-best-selling-genres/output_43_0.png" alt="png" /></p>
+<p><img src="/assets/Analysis of videogames market, biggest market and best selling genres/output_43_0.png" alt="png" /></p>
 
 <p>Here we can see that the best selling Genres are:</p>
 <ul>
@@ -1226,7 +1226,7 @@ Name: Other_Sales, dtype: float64
 <span class="n">Image</span><span class="p">(</span><span class="n">img_bytes</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p><img src="/assets/Analysis-of-videogames-market,-biggest-market-and-best-selling-genres/output_49_0.png" alt="png" /></p>
+<p><img src="/assets/Analysis of videogames market, biggest market and best selling genres/output_49_0.png" alt="png" /></p>
 
 <p>Calculating the 95th percentile:</p>
 
@@ -1265,14 +1265,14 @@ Name: Other_Sales, dtype: float64
 <span class="n">Image</span><span class="p">(</span><span class="n">img_bytes</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p><img src="/assets/Analysis-of-videogames-market,-biggest-market-and-best-selling-genres/output_57_0.png" alt="png" /></p>
+<p><img src="/assets/Analysis of videogames market, biggest market and best selling genres/output_57_0.png" alt="png" /></p>
 
 <p>The outliers (best selling games) make the boxplot unreadable, zooming in the boxes:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">"boxplot_zoomed.png"</span><span class="p">)</span> 
 </code></pre></div></div>
 
-<p><img src="/assets/Analysis-of-videogames-market,-biggest-market-and-best-selling-genres/output_59_0.png" alt="png" /></p>
+<p><img src="/assets/Analysis of videogames market, biggest market and best selling genres/output_59_0.png" alt="png" /></p>
 
 <h4 id="which-genre-sells-the-most-per-game">Which Genre sells the most per game?</h4>
 
@@ -1310,7 +1310,7 @@ Sports          0.719844
 dtype: float64
 </code></pre></div></div>
 
-<p><img src="/assets/Analysis-of-videogames-market,-biggest-market-and-best-selling-genres/output_62_2.png" alt="png" /></p>
+<p><img src="/assets/Analysis of videogames market, biggest market and best selling genres/output_62_2.png" alt="png" /></p>
 
 <p>Note: When comparing two genres, the one with the less coefficient of variation has lower variability between each game</p>
 
