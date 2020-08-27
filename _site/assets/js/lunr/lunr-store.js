@@ -13,4 +13,9 @@ var store = [{
         "excerpt":"We will analyze the sales data of the videogames market using the data about games with more than 100000 copies sold source: https://www.kaggle.com/gregorut/videogamesales Code and data used: https://github.com/davbom97/source I assume this data to be somewhat representative sample of the videogames market and I will use it to extract some insights...","categories": ["Data Analysis"],
         "tags": [],
         "url": "http://localhost:4000/data%20analysis/Analysis-of-videogames-market,-biggest-market-and-best-selling-genres/",
+        "teaser":null},{
+        "title": "Improving user experience : AB Testing changes",
+        "excerpt":"We will be using statistical tools to validate improvements in the retention rate of our app Data source : https://www.kaggle.com/yufengsui/mobile-games-ab-testing Problem Description Imagine we have developed a mobile application and we are want to improve the retention of our app,it is a mobile game where they encounter gates that forces...","categories": ["Data Analysis"],
+        "tags": [],
+        "url": "http://localhost:4000/data%20analysis/Improving-user-experience-AB-Testing-changes/",
         "teaser":null}]
